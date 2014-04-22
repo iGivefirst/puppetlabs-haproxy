@@ -31,12 +31,11 @@ class { 'haproxy':
 # Export a balancermember server, note that the listening_service parameter
 #  will/must correlate with an haproxy::listen defined resource type.
 @@haproxy::balancermember { $fqdn:
-  order                  => '21',
+  #order                  => '21',
   listening_service      => 'puppet00',
-  server_name            => $::hostname,
-  balancer_ip            => $::ipaddress,
-  balancer_port          => '8140',
-  balancermember_options => 'check'
+  server_names           => $::hostname,
+  ipaddresses            => $::ipaddress,
+  options => 'check'
 }
 
 # Declare a couple of Listening Services for haproxy.cfg
@@ -44,7 +43,7 @@ class { 'haproxy':
 #  the haproxy::config defined resource type with the following line:
 #  Haproxy::Balancermember <<| listening_service == $name |>>
 haproxy::listen { 'puppet00':
-  order     => '20',
+  #order     => '20',
   ipaddress => $::ipaddress,
   ports     => '18140',
   options   => {
@@ -56,7 +55,7 @@ haproxy::listen { 'puppet00':
   },
 }
 haproxy::listen { 'stats':
-  order     => '30',
+  #order     => '30',
   ipaddress => '',
   ports     => '9090',
   options   => {
