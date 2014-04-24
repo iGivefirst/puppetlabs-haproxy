@@ -93,14 +93,15 @@ define haproxy::balancermember (
   $ipaddresses  = $::ipaddress,
   $ensure       = 'present',
   $options      = '',
-  $define_cookies = false
+  $define_cookies = false,
+  $config_file = '/etc/haproxy/haproxy.cfg',
 ) {
 
   # Template uses $ipaddresses, $server_name, $ports, $option
   concat::fragment { "${listening_service}_balancermember_${name}":
     order   => "20-${listening_service}-01-${name}",
     ensure  => $ensure,
-    target  => '/etc/haproxy/haproxy.cfg',
+    target  => $config_file,
     content => template('haproxy/haproxy_balancermember.erb'),
   }
 }

@@ -1,7 +1,7 @@
 
 frontend <%= @name %>
 <% Array(@ipaddress).uniq.each do |virtual_ip| (@ports.is_a?(Array) ? @ports : Array(@ports.split(","))).each do |port| -%>
-  <% if @ssl_off_load && @ssl_cert.has_key?("#{virtual_ip}:#{port}") -%>bind <%= virtual_ip %>:<%= port %> ssl crt <%= @ssl_cert["#{virtual_ip}:#{port}"] %>
+  <% if @ssl_off_load && @ssl_certs.has_key?("#{virtual_ip}:#{port}") -%>bind <%= virtual_ip %>:<%= port %> ssl crt <%= @ssl_certs["#{virtual_ip}:#{port}"] %>
   <%- else -%>bind <%= virtual_ip %>:<%= port %>
 <% end end end -%>
 <% if @mode -%>
@@ -11,7 +11,7 @@ frontend <%= @name %>
 <% Array(val).each do |item| -%>
   <%= key %>  <%= item %>
 <% end end -%>
-<% if @requadd -%>
-<% Array(@reqadd).each do |item| -%>
+<% if @requadds -%>
+<% Array(@reqadds).each do |item| -%>
   reqadd <%= item %>
 <% end end -%>

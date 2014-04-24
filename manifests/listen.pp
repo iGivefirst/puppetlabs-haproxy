@@ -77,13 +77,14 @@ define haproxy::listen (
       'ssl-hello-chk'
     ],
     'balance' => 'roundrobin'
-  }
+  },
+  $config_file = '/etc/haproxy/haproxy.cfg',
 ) {
 
   # Template uses: $name, $ipaddress, $ports, $options
   concat::fragment { "${name}_listen_block":
     order   => "20-${name}-00",
-    target  => '/etc/haproxy/haproxy.cfg',
+    target  => $config_file,
     content => template('haproxy/haproxy_listen_block.erb'),
   }
 

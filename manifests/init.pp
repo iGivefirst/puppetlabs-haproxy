@@ -72,7 +72,8 @@ class haproxy (
   $global_options   = $haproxy::params::global_options,
   $defaults_options = $haproxy::params::defaults_options,
   $package_name     = 'haproxy',
-  $restart_command  = undef
+  $restart_command  = undef,
+  $config_file = '/etc/haproxy/haproxy.cfg',
 ) inherits haproxy::params {
   include concat::setup
 
@@ -85,7 +86,7 @@ class haproxy (
   }
 
   if $enable {
-    concat { '/etc/haproxy/haproxy.cfg':
+    concat { $config_file :
       owner   => '0',
       group   => '0',
       mode    => '0644',
@@ -98,14 +99,14 @@ class haproxy (
 
     # Simple Header
     concat::fragment { '00-header':
-      target  => '/etc/haproxy/haproxy.cfg',
+      target  => $config_file,
       order   => '01',
       content => "# This file managed by Puppet\n",
     }
 
     # Template uses $global_options, $defaults_options
     concat::fragment { 'haproxy-base':
-      target  => '/etc/haproxy/haproxy.cfg',
+      target  => $config_file,
       order   => '10',
       content => template('haproxy/haproxy-base.cfg.erb'),
     }
@@ -132,12 +133,12 @@ class haproxy (
   if $manage_service {
     if $global_options['chroot'] {
       $deps = [
-        Concat['/etc/haproxy/haproxy.cfg'],
+        Concat[$config_file],
         File[$global_options['chroot']],
       ]
     } else {
       $deps = [
-        Concat['/etc/haproxy/haproxy.cfg'],
+        Concat[$config_file],
       ]
     }
 

@@ -23,7 +23,7 @@ describe 'haproxy::frontend' do
         :name  => 'croy',
         :ports => '18140',
         :ssl_off_load => true,
-        :ssl_cert     => {'1.1.1.1:18140' => '/path/to/my/cert'},
+        :ssl_certs     => {'1.1.1.1:18140' => '/path/to/my/cert'},
       }
     end
 
@@ -61,7 +61,7 @@ describe 'haproxy::frontend' do
           '8443'
         ],
         :ssl_off_load => true,
-        :ssl_cert     => {
+        :ssl_certs     => {
           '23.23.23.23:443' => '/path/to/my/cert1',
           '23.23.23.23:8443' => '/path/to/my/cert2'
         },
@@ -99,8 +99,8 @@ describe 'haproxy::frontend' do
           '443'
         ],
         :ssl_off_load => true,
-        :ssl_cert     => {'23.23.23.23:443' => '/path/to/my/cert'},
-        :reqadd       => ['X-Forwarded-Proto:\ https if { is_ssl }']
+        :ssl_certs     => {'23.23.23.23:443' => '/path/to/my/cert'},
+        :reqadds       => ['X-Forwarded-Proto:\ https if { is_ssl }']
       }
     end
 

@@ -1,8 +1,9 @@
 # == Class: haproxy::params
 #
 # This is a container class holding default parameters for for haproxy class.
-#  currently, only the Redhat family is supported, but this can be easily
-#  extended by changing package names and configuration file paths.
+#  currently, only the 'Archlinux', 'Debian', 'Redhat', and 'Gentoo' familes are 
+#  supported, but this can be easily extended by changing package names and 
+#  configuration file paths.
 #
 class haproxy::params {
   case $osfamily {
