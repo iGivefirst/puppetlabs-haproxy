@@ -69,6 +69,7 @@
 class haproxy (
   $manage_service   = true,
   $enable           = true,
+  $ensure           = 'present',
   $global_options   = $haproxy::params::global_options,
   $defaults_options = $haproxy::params::defaults_options,
   $package_name     = 'haproxy',
@@ -77,11 +78,13 @@ class haproxy (
 ) inherits haproxy::params {
   include concat::setup
 
+  // maintaining backwards compatibility to allow enable to override ensure
+  if (!$enable) {
+    $ensure = 'absent'
+  }
+
   package { $package_name:
-    ensure  => $enable ? {
-      true  => present,
-      false => absent,
-    },
+    ensure  => $ensure,
     alias   => 'haproxy',
   }
 
