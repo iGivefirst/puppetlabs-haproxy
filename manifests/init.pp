@@ -78,7 +78,7 @@ class haproxy (
 ) inherits haproxy::params {
   include concat::setup
 
-  // maintaining backwards compatibility to allow enable to override ensure
+  # maintaining backwards compatibility to allow enable to override ensure
   if (!$enable) {
     $ensure = 'absent'
   }
