@@ -58,13 +58,16 @@
 define haproxy::frontend (
   $ports,
   $ipaddress        = [$::ipaddress],
+  $ssl_off_load     = false,
+  $ssl_cert         = undef,
   $mode             = undef,
   $collect_exported = true,
   $options          = {
     'option'  => [
       'tcplog',
     ],
-  }
+  },
+  $reqadd           = undef,
 ) {
 
   # Template uses: $name, $ipaddress, $ports, $options
