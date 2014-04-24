@@ -1,7 +1,11 @@
 
 frontend <%= @name %>
 <% Array(@ipaddress).uniq.each do |virtual_ip| (@ports.is_a?(Array) ? @ports : Array(@ports.split(","))).each do |port| -%>
+<% if @ssl_off_load %> 
+  bind <%= virtual_ip %>:<%= port %> ssl crt <% @ssl_cert %>
+<% else -%>
   bind <%= virtual_ip %>:<%= port %>
+<% end -%>
 <% end end -%>
 <% if @mode -%>
   mode  <%= @mode %>
