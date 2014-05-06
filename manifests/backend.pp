@@ -59,6 +59,7 @@ define haproxy::backend (
     'balance' => 'roundrobin'
   },
   $config_file = '/etc/haproxy/haproxy.cfg',
+  $mode => 'tcp',
 ) {
 
   # Template uses: $name, $ipaddress, $ports, $options

@@ -15,3 +15,8 @@ frontend <%= @name %>
 <% Array(@reqadds).each do |item| -%>
   reqadd <%= item %>
 <% end end -%>
+<% if @default_backend -%>
+  default_backend  <%= @default_backend %>
+<% end -%>
+
+

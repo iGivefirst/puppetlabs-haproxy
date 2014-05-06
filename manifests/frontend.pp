@@ -69,6 +69,7 @@ define haproxy::frontend (
   },
   $reqadds          = [],
   $config_file = '/etc/haproxy/haproxy.cfg',
+  $default_backend = undef,
 ) {
 
   # Template uses: $name, $ipaddress, $ports, $options
