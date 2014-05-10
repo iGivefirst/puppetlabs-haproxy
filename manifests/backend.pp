@@ -50,17 +50,17 @@
 # Jeremy Kitchen <jeremy@nationbuilder.com>
 #
 define haproxy::backend (
-  $collect_exported = true,
-  $options          = {
-    'option'  => [
-      'tcplog',
-      'ssl-hello-chk'
-    ],
-    'balance' => 'roundrobin'
+  $collect_exported   = true,
+  $options            = {
+      'option'  => [
+          'tcplog',
+          'ssl-hello-chk'
+      ],
+      'balance' => 'roundrobin'
   },
-  $config_file = '/etc/haproxy/haproxy.cfg',
-  $mode => 'tcp',
-  $reqadds          = [],
+  $config_file        = '/etc/haproxy/haproxy.cfg',
+  $mode               = 'tcp',
+  $reqadds            = [],
 ) {
 
   # Template uses: $name, $ipaddress, $ports, $options
