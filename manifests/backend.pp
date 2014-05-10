@@ -60,6 +60,7 @@ define haproxy::backend (
   },
   $config_file = '/etc/haproxy/haproxy.cfg',
   $mode => 'tcp',
+  $reqadds          = [],
 ) {
 
   # Template uses: $name, $ipaddress, $ports, $options

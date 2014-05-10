@@ -5,6 +5,10 @@ backend <%= @name %>
   <%= key %>  <%= item %>
 <% end -%>
 <% end -%>
+% if @requadds -%>
+<% Array(@reqadds).each do |item| -%>
+  reqadd <%= item %>
+<% end end -%>
 <% if @mode -%>
   mode  <%= @mode %>
 <% end -%>
