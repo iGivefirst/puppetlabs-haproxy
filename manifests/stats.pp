@@ -1,18 +1,18 @@
-# == Define Resource Type: haproxy::listenstats
+# == Define Resource Type: haproxy::stats
 #
-define haproxy::listenstats (
+define haproxy::stats (
   $port,
   $ipaddress        = $::ipaddress,
   $mode             = undef,
   $username,
-  $password
+  $password,
   $config_file = '/etc/haproxy/haproxy.cfg',
 ) {
 
   # Template uses: $ipaddress, $port, $mode, $username, $password
-  concat::fragment { "${name}_listenstatus_block":
+  concat::fragment { "${name}_stats_block":
     order   => "20-${name}-00",
     target  => $config_file,
-    content => template('haproxy/haproxy_listenstats_block.erb'),
+    content => template('haproxy/haproxy_stats_block.erb'),
   }
 }
