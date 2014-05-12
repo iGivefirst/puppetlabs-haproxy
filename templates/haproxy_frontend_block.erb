@@ -11,12 +11,10 @@ frontend <%= @name %>
 <% Array(val).each do |item| -%>
   <%= key %>  <%= item %>
 <% end end -%>
-<% if @reqadds -%>
+<%- if @reqadds -%>
 <% Array(@reqadds).each do |item| -%>
   reqadd <%= item %>
 <% end end -%>
-<% if @default_backend -%>
+<%- if @default_backend -%>
   default_backend  <%= @default_backend %>
 <% end -%>
-
-

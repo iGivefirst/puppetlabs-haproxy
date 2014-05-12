@@ -107,7 +107,7 @@ describe 'haproxy::frontend' do
     it { should contain_concat__fragment('croy_frontend_block').with(
       'order'   => '15-croy-00',
       'target'  => '/etc/haproxy/haproxy.cfg',
-      'content' => "\nfrontend croy\n  bind 23.23.23.23:80\n  bind 23.23.23.23:443 ssl crt /path/to/my/cert\n  option  tcplog\n"
+      'content' => "\nfrontend croy\n  bind 23.23.23.23:80\n  bind 23.23.23.23:443 ssl crt /path/to/my/cert\n  option  tcplog\n  reqadd X-Forwarded-Proto:\\ https if { is_ssl }\n"
     ) }
   end
 end
