@@ -3,7 +3,7 @@
 define haproxy::stats (
   $port,
   $ipaddress        = $::ipaddress,
-  $mode             = undef,
+  $mode             = 'http',
   $username,
   $password,
   $config_file = '/etc/haproxy/haproxy.cfg',

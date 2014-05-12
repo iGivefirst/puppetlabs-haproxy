@@ -1,8 +1,6 @@
 
 listen stats <%= ipaddress %>:<%= port %>
-<% if @mode -%>
   mode  <%= @mode %>
-<% end -%>
   stats enable
   stats hide-version
   stats realm Haproxy\ Statistics
