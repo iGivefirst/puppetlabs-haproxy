@@ -1,5 +1,5 @@
 
-listen stats <%= virtual_ip %>:<%= port %>
+listen stats <%= ipaddress %>:<%= port %>
 <% if @mode -%>
   mode  <%= @mode %>
 <% end -%>

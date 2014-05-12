@@ -10,8 +10,8 @@ define haproxy::stats (
 ) {
 
   # Template uses: $ipaddress, $port, $mode, $username, $password
-  concat::fragment { "${name}_stats_block":
-    order   => "20-${name}-00",
+  concat::fragment { "${ipaddress}_stats_block":
+    order   => "20-${ipaddress}-stats-00",
     target  => $config_file,
     content => template('haproxy/haproxy_stats_block.erb'),
   }
